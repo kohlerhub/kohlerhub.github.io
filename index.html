@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kohler Hub</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #020d1f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      text-align: center;
+      background-image: radial-gradient(circle at center, #021024 0%, #020d1f 500%);
+      background-repeat: repeat;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    body.christmas-theme {
+      background-color: #0a1628;
+      background-image: radial-gradient(circle at center, #1a0f0f 0%, #0a1628 500%);
+    }
+
+    body.christmas-theme .hero h1 {
+      background: linear-gradient(90deg, #ff2a2a, #ffffff, #2aff2a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #ff2a2a99;
+    }
+
+    body.christmas-theme .hero p span {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #ff2a2a99;
+    }
+
+    body.christmas-theme .buy-now-btn,
+    body.christmas-theme .discord-btn {
+      background: linear-gradient(135deg, #ff2a2a 0%, #2aff2a 100%);
+      box-shadow: 0 8px 32px rgba(255, 42, 42, 0.4);
+    }
+
+    body.christmas-theme .purchase-option-btn {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      box-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
+      border: 2px solid rgba(255, 42, 42, 0.3);
+    }
+
+    body.christmas-theme .features h2,
+    body.christmas-theme .payments h2 {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #ff2a2a99;
+    }
+
+    body.christmas-theme .modal h2 {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 42, 42, 0.5);
+    }
+
+    body.christmas-theme .feature-card:hover {
+      border-color: rgba(255, 42, 42, 0.5);
+      box-shadow: 0 20px 60px rgba(255, 42, 42, 0.3);
+    }
+
+    body.christmas-theme .hero-glow {
+      background: radial-gradient(circle, rgba(255, 42, 42, 0.3), transparent 70%);
+    }
+
+    body.christmas-theme .bg-animation {
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(42, 255, 42, 0.3), transparent 40%),
+        radial-gradient(ellipse at 80% 30%, rgba(255, 42, 42, 0.3), transparent 40%),
+        radial-gradient(ellipse at 50% 80%, rgba(42, 255, 150, 0.25), transparent 45%),
+        radial-gradient(ellipse at 10% 20%, rgba(255, 100, 100, 0.2), transparent 35%),
+        radial-gradient(ellipse at 90% 70%, rgba(100, 255, 100, 0.2), transparent 35%);
+      animation: northernLights 15s ease-in-out infinite;
+    }
+
+    body.christmas-theme .buy-now-btn:hover,
+    body.christmas-theme .discord-btn:hover,
+    body.christmas-theme .purchase-option-btn:hover {
+      box-shadow: 0 15px 50px rgba(255, 42, 42, 0.6);
+    }
+    
+    body.winter-theme {
+      background-color: #0d1520;
+      background-image: radial-gradient(circle at center, #1a2030 0%, #0d1520 500%);
+    }
+
+    body.winter-theme .hero h1 {
+      background: linear-gradient(90deg, #00d4ff, #b3e5fc, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #00d4ff99;
+    }
+
+    body.winter-theme .hero p span {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #00d4ff99;
+    }
+
+    body.winter-theme .buy-now-btn,
+    body.winter-theme .discord-btn {
+      background: linear-gradient(135deg, #00d4ff 0%, #b3e5fc 100%);
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.4);
+    }
+
+    body.winter-theme .purchase-option-btn {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+    }
+
+    body.winter-theme .features h2,
+    body.winter-theme .payments h2 {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #00d4ff99;
+    }
+
+    body.winter-theme .modal h2 {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    body.winter-theme .feature-card:hover {
+      border-color: rgba(0, 212, 255, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    }
+
+    body.winter-theme .hero-glow {
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.3), transparent 70%);
+    }
+
+    body.winter-theme .bg-animation {
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.25), transparent 40%),
+        radial-gradient(ellipse at 80% 30%, rgba(179, 229, 252, 0.25), transparent 40%),
+        radial-gradient(ellipse at 50% 80%, rgba(100, 220, 255, 0.2), transparent 45%),
+        radial-gradient(ellipse at 10% 20%, rgba(150, 235, 255, 0.2), transparent 35%),
+        radial-gradient(ellipse at 90% 70%, rgba(200, 240, 255, 0.2), transparent 35%);
+      animation: northernLights 15s ease-in-out infinite;
+    }
+
+    body.winter-theme .buy-now-btn:hover,
+    body.winter-theme .discord-btn:hover,
+    body.winter-theme .purchase-option-btn:hover {
+      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
+    }
+
+    @keyframes northernLights {
+      0%, 100% { 
+        opacity: 1;
+        filter: brightness(1) hue-rotate(0deg);
+      }
+      25% {
+        opacity: 0.9;
+        filter: brightness(1.1) hue-rotate(10deg);
+      }
+      50% { 
+        opacity: 0.95;
+        filter: brightness(1.2) hue-rotate(-10deg);
+      }
+      75% {
+        opacity: 0.9;
+        filter: brightness(1.1) hue-rotate(5deg);
+      }
+    }
+    
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      z-index: 9998;
+      pointer-events: none;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+
+    .snowflake::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) translateX(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) translateX(30px) rotate(360deg);
+      }
+    }
+
+    .snowflake.small { 
+      width: 6px;
+      height: 6px;
+      opacity: 0.6;
+      animation-duration: 15s;
+    }
+
+    .snowflake.medium { 
+      width: 10px;
+      height: 10px;
+      opacity: 0.8;
+      animation-duration: 12s;
+    }
+
+    .snowflake.large { 
+      width: 14px;
+      height: 14px;
+      opacity: 0.9;
+      animation-duration: 10s;
+    }
+    
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(166, 76, 255, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(60, 188, 255, 0.15), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(76, 103, 255, 0.1), transparent 50%);
+      animation: backgroundShift 20s ease-in-out infinite;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { 
+        opacity: 1;
+        filter: brightness(1);
+      }
+      50% { 
+        opacity: 0.9;
+        filter: brightness(1.2);
+      }
+    }
+    
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+    
+    @keyframes shooting-star {
+      0% { 
+        transform: translateX(var(--start-x)) translateY(var(--start-y)); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: translateX(var(--end-x)) translateY(var(--end-y)); 
+        opacity: 0; 
+      }
+    }
+
+    .shooting-star {
+      position: absolute;
+      background: linear-gradient(90deg, #fff, rgba(60, 188, 255, 0.5));
+      border-radius: 50%;
+      width: 3px;
+      height: 3px;
+      animation: shooting-star 2s linear forwards;
+      box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.8);
+    }
+
+    .shooting-star::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+      right: 0;
+    }
+    
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 20s infinite ease-in-out;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -50px) scale(1.1); }
+      50% { transform: translate(-30px, 30px) scale(0.9); }
+      75% { transform: translate(40px, 20px) scale(1.05); }
+    }
+
+    .hero {
+      padding-top: 80px;
+      font-weight: bold;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+    
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(166, 76, 255, 0.3), transparent 70%);
+      filter: blur(100px);
+      animation: pulseGlow 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #a64cff, #3cbcff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #3cbcff99;
+      position: relative;
+      z-index: 10;
+      animation: titleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero p {
+      font-size: 24px;
+      color: #ccc;
+      text-shadow: 0 0 10px #3cbcffaa;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero p span {
+      background: linear-gradient(90deg, #4c67ff 0%, #3cbcff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #3cbcff99;
+      font-weight: bold;
+    }
+
+    .hero-logo {
+      height: 200px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 40px #3cbcff);
+      animation: logoFloat 6s ease-in-out infinite;
+      position: relative;
+      z-index: 10;
+    }
+
+    body.christmas-theme .hero-logo {
+      filter: drop-shadow(0 0 40px #ff2a2a);
+    }
+
+    body.winter-theme .hero-logo {
+      filter: drop-shadow(0 0 40px #00d4ff);
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .buy-now-btn, .discord-btn, .purchase-option-btn {
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      width: 200px;
+      margin: 10px auto;
+    }
+    
+    .buy-now-btn {
+      background: linear-gradient(135deg, #4c67ff 0%, #3cbcff 100%);
+      box-shadow: 0 8px 32px rgba(60, 188, 255, 0.4);
+    }
+
+    .discord-btn {
+      background: linear-gradient(135deg, #4c67ff 0%, #3cbcff 100%);
+      box-shadow: 0 8px 32px rgba(60, 188, 255, 0.4);
+    }
+
+    .purchase-option-btn {
+      background: linear-gradient(90deg, #3cbcff 0%, #a64cff 100%);
+      box-shadow: 0 0 20px rgba(60, 188, 255, 0.5);
+      animation: buttonPulse 3s infinite alternate;
+      border: 2px solid rgba(60, 188, 255, 0.3);
+      width: 100%;
+    }
+
+    @keyframes buttonPulse {
+      0% { 
+        box-shadow: 0 0 20px rgba(60, 188, 255, 0.5);
+        transform: scale(1);
+      }
+      100% { 
+        box-shadow: 0 0 40px rgba(60, 188, 255, 0.8);
+        transform: scale(1.02);
+      }
+    }
+
+    .buy-now-btn:hover, .discord-btn:hover, .purchase-option-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(60, 188, 255, 0.6);
+    }
+
+    .buy-now-btn::before, .discord-btn::before, .purchase-option-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.6s;
+    }
+
+    .buy-now-btn:hover::before, .discord-btn:hover::before, .purchase-option-btn:hover::before {
+      left: 100%;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .scroll-down-arrow {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .scroll-down-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scroll-line {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(60, 188, 255, 0.8), transparent);
+      margin: 0 auto 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: linear-gradient(to bottom, #fff, rgba(60, 188, 255, 0.5));
+      animation: scrollAnimation 2s infinite;
+    }
+
+    @keyframes scrollAnimation {
+      0% { transform: translateY(-30px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(60px); opacity: 0; }
+    }
+
+    .scroll-text {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(60, 188, 255, 0.8);
+    }
+    
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(60, 188, 255, 0.3);
+      box-shadow: 0 0 20px rgba(60, 188, 255, 0.5),
+                  0 0 40px rgba(60, 188, 255, 0.3);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.15s ease, height 0.15s ease;
+      z-index: 9999;
+    }
+
+    .cursor.click {
+      width: 40px;
+      height: 40px;
+      background: rgba(60, 188, 255, 0.5);
+      box-shadow: 0 0 30px rgba(60, 188, 255, 0.8),
+                  0 0 60px rgba(60, 188, 255, 0.5);
+    }
+
+    a { 
+      text-decoration: none; 
+      cursor: pointer;
+    }
+    
+    .features {
+      padding: 100px 20px;
+      background: rgba(2, 13, 31, 0.5);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 5;
+      border-top: 1px solid rgba(60, 188, 255, 0.1);
+    }
+
+    .features h2 {
+      font-size: 42px;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, #a64cff 0%, #3cbcff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #3cbcff99;
+    }
+
+    .features-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: rgba(2, 13, 31, 0.3);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 300px;
+      border: 1px solid rgba(60, 188, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(60, 188, 255, 0.3);
+      border-color: rgba(60, 188, 255, 0.5);
+    }
+
+    .feature-icon {
+      font-size: 50px;
+      margin-bottom: 20px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(60, 188, 255, 0.1);
+      border-radius: 50%;
+      border: 2px solid rgba(60, 188, 255, 0.3);
+    }
+
+    .feature-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: #3cbcff;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    body.christmas-theme .feature-icon {
+      background: rgba(255, 42, 42, 0.1);
+      border-color: rgba(255, 42, 42, 0.3);
+    }
+
+    body.christmas-theme .feature-icon svg {
+      stroke: #ff2a2a;
+    }
+
+    body.winter-theme .feature-icon {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    body.winter-theme .feature-icon svg {
+      stroke: #00d4ff;
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .feature-card p {
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .showcase {
+      padding: 100px 20px;
+      background: rgba(2, 13, 31, 0.3);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 5;
+      border-top: 1px solid rgba(60, 188, 255, 0.1);
+    }
+
+    .showcase h2 {
+      font-size: 42px;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, #a64cff 0%, #3cbcff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+    }
+
+    @media (min-width: 900px) {
+      .showcase-row { grid-template-columns: 1fr 1fr; }
+      .showcase-row.reverse { direction: rtl; }
+      .showcase-row.reverse .showcase-text { direction: ltr; }
+    }
+
+    .showcase-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(60, 188, 255, 0.25);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+      transition: all 0.5s ease;
+    }
+
+    .showcase-image:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(60, 188, 255, 0.6);
+      box-shadow: 0 20px 70px rgba(60,188,255,0.3);
+    }
+
+    body.christmas-theme .showcase-image:hover {
+      border-color: rgba(255, 42, 42, 0.6);
+      box-shadow: 0 20px 70px rgba(255, 42, 42, 0.3);
+    }
+
+    body.winter-theme .showcase-image:hover {
+      border-color: rgba(0, 212, 255, 0.6);
+      box-shadow: 0 20px 70px rgba(0, 212, 255, 0.3);
+    }
+
+    .showcase-text h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #a64cff 0%, #3cbcff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.christmas-theme .showcase-text h3 {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.winter-theme .showcase-text h3 {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-text p {
+      color: #ccc;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    body.christmas-theme .showcase h2 {
+      background: linear-gradient(90deg, #ff2a2a 0%, #2aff2a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #ff2a2a99;
+    }
+
+    body.winter-theme .showcase h2 {
+      background: linear-gradient(90deg, #00d4ff 0%, #b3e5fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px #00d4ff99;
+    }
+    
+    .payments {
+      padding: 80px 20px 120px;
+      background: rgba(2, 16, 39, 0.4);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 5;
+      border-top: 1px solid rgba(60, 188, 255, 0.1);
+    }
+
+    .payments h2
+    {
+      font-size: 36px;
+      margin-bottom: 32px;
+      background: linear-gradient(90deg, #a64cff 0%, #3cbcff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .payment-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .payment-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: rgba(2, 16, 39, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(60, 188, 255, 0.25);
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+      transition: all 0.4s ease;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .payment-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(60, 188, 255, 0.6);
+      box-shadow: 0 16px 40px rgba(60,188,255,0.25);
+    }
+
+    .payment-icon {
+      width: 24px;
+      height: 24px;
+      color: #3cbcff;
+    }
+    
+    .global-warning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(99, 102, 241, 0.15);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(99, 102, 241, 0.5);
+      color: #a5b4fc;
+      padding: 15px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .warning-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    body.christmas-theme .warning-content {
+      color: #ffb3b3;
+    }
+
+    body.winter-theme .warning-content {
+      color: #b3e5fc;
+    }
+
+    .warning-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    body.christmas-theme .warning-icon {
+      color: #ffb3b3;
+    }
+
+    body.winter-theme .warning-icon {
+      color: #b3e5fc;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    body.warning-active .hero {
+      padding-top: 100px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-content {
+      position: relative;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: sticky;
+      top: 20px;
+      float: right;
+      margin: 20px 20px 0 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      padding: 40px 40px 20px;
+      text-align: center;
+      clear: both;
+    }
+
+    .modal-header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .modal-header p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+    }
+
+    .modal-body {
+      padding: 20px 40px 40px;
+    }
+
+    .modal-view {
+      width: 100%;
+    }
+
+    .purchase-option-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .best-seller-badge {
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      box-shadow: 0 0 15px rgba(240, 147, 251, 0.5);
+    }
+
+    .note {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 3px solid #667eea;
+      border-radius: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .note strong {
+      color: #fff;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 30px 0;
+    }
+
+    .section {
+      margin: 20px 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .section-box {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      line-height: 1.8;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .steps {
+      list-style: none;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .section h3 {
+      font-size: 16px;
+      margin: 20px 0 10px;
+      color: #fff;
+    }
+
+    .help-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .warning {
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(255, 75, 75, 0.1);
+      border: 1px solid rgba(255, 75, 75, 0.3);
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: #ff6b6b;
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        max-height: 95vh;
+      }
+      .modal-header {
+        padding: 30px 20px 15px;
+      }
+      .modal-body {
+        padding: 15px 20px 30px;
+      }
+      .modal-header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="globalWarning" class="global-warning" style="display: none;">
+    <div class="warning-content">
+      <svg class="warning-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span id="warningText"></span>
+    </div>
+  </div>
+
+  <div class="bg-animation"></div>
+  <div class="stars-container"></div>
+  
+  <div id="purchaseModal" class="modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <div id="plansView" class="modal-view">
+        <div class="modal-header">
+          <h1>Kohler Hub Plans</h1>
+          <p>Choose the perfect plan for your needs</p>
+        </div>
+        <div class="modal-body">
+          <div class="purchase-option-wrapper">
+            <span class="best-seller-badge">BEST SELLER</span>
+            <button class="purchase-option-btn" onclick="redirectToLifetime()">
+              <span class="btn-text">Lifetime</span>
+            </button>
+          </div>
+          <div class="purchase-option-wrapper">
+            <button class="purchase-option-btn" onclick="redirectToMonthly()">
+              <span class="btn-text">Monthly</span>
+            </button>
+          </div>
+          <div class="divider"></div>
+          <div class="section clean-section">
+            <div class="section-title">After Purchase</div>
+            <div class="section-box">
+              Your key will be sent to your email.
+              <br>
+              If you don't see it, check your <strong>spam</strong> or <strong>trash</strong> folder.
+              <br>
+              If you still can't find it, you can make a ticket in our <strong>discord server</strong> and our support team will assist you.
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="section clean-section">
+            <div class="section-title">Redeem your key</div>
+            <h3>Scripts</h3>
+            <ul class="steps">
+              <li>Discord → Go to <strong>#get-key</strong></li>
+              <li>Click <strong>Redeem Key</strong></li>
+              <li>Enter your key</li>
+            </ul>
+            <h3>Kohler Hub+</h3>
+            <ul class="steps">
+              <li>Discord → Go to <strong>#bot-cmds</strong></li>
+              <li>Use <strong>/redeem</strong></li>
+              <li>Enter your key</li>
+            </ul>
+            <p class="help-text">Need help? Create a ticket in our <strong>discord server</strong>.</p>
+          </div>
+          <div class="warning">WARNING: Sharing your key will result in a blacklist!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <img src="logo.png" alt="Kohler Hub Logo" class="hero-logo">
+    <h1>Kohler Hub</h1>
+    <p>Experience the next level of <span>exploits</span> and <span>performance.</span></p>
+    <div class="button-container">
+      <button class="buy-now-btn" onclick="openModal()">
+        <span class="btn-text">Buy Now</span>
+      </button>
+      <a href="https://discord.gg/kohler-hub-5-3k-1163493038702731375" target="_blank"> 
+        <button class="discord-btn">
+          <span class="btn-text">Join Discord</span>
+        </button> 
+      </a>
+    </div>
+    <div class="scroll-down-arrow" id="scrollArrow">
+      <div class="scroll-line"></div>
+      <div class="scroll-text">Scroll</div>
+    </div>
+  </div>
+
+  <section id="features" class="features">
+    <h2>Why Choose Kohler Hub?</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3>Undetected</h3>
+        <p>Our advanced bypass techniques ensure you stay undetected while using Kohler Hub, providing you with the safest experience possible.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3>Powerful</h3>
+        <p>Experience unmatched performance with Kohler Hub that delivers smooth gameplay and a good experience.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h3>Support Team</h3>
+        <p>Our dedicated support team is available 24/7 to assist you with any issues or questions you may have.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </div>
+        <h3>Frequent Updates</h3>
+        <p>We constantly update Kohler Hub to stay ahead of patches and to provide you with the latest features.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3>Optimized</h3>
+        <p>Kohler Hub is optimized so it runs faster and more efficiently than ever before.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <h3>Compatibility</h3>
+        <p>Kohler Hub is built to run smoothly on most executors, giving you flexibility and ease no matter what you use.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <h3>ESP</h3>
+        <p>Customizable boxes, tracers, health bars, and distance indicators so you never lose track.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+          </svg>
+        </div>
+        <h3>Aimbot</h3>
+        <p>Legit &amp; great presets, smoothing, FOV control, visibility &amp; team checks for natural aim assist.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+          </svg>
+        </div>
+        <h3>Universal Aimbot (External)</h3>
+        <p>External-level targeting designed for consistent behavior across multiple Roblox shooters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase" class="showcase">
+    <h2>Experience Kohler Hub in Action</h2>
+    <div class="showcase-row">
+      <img class="showcase-image reveal" src="clean-ui.png" alt="Kohler Hub UI">
+      <div class="showcase-text reveal">
+        <h3>Clean UI</h3>
+        <p>Navigate with ease through a sleek, responsive interface. Every feature is just a few clicks away for maximum efficiency. And yes, everything is customizable.</p>
+      </div>
+    </div>
+    <div class="showcase-row reverse">
+      <img class="showcase-image reveal" src="esp-overlay.png" alt="ESP Overlay">
+      <div class="showcase-text reveal">
+        <h3>Precision ESP Overlay</h3>
+        <p>Stay aware with a clean, distraction-free ESP designed for clarity, accuracy, and simplicity.</p>
+      </div>
+    </div>
+    <div class="showcase-row">
+      <img class="showcase-image reveal" src="universal-aimbot.png" alt="Universal External Aimbot">
+      <div class="showcase-text reveal">
+        <h3>External Level Universal Aimbot</h3>
+        <p>Harness external-level targeting aimbot for unmatched precision across supported shooters all with little setup. It really is just plug and play.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="payments" class="payments">
+    <h2>Supported Payment Methods</h2>
+    <div class="payment-grid">
+      <div class="payment-card" onclick="redirectToDonation()">
+        <svg class="payment-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+        </svg>
+        <span>Robux</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="cursor"></div>
+
+  <script>
+    const GLOBAL_WARNING_MESSAGE = "";
+
+    function openModal() {
+      document.getElementById('purchaseModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('purchaseModal').classList.remove('active');
+    }
+
+    function redirectToLifetime() {
+      window.open('https://www.roblox.com/game-pass/1669149949/Lifetime-Key', '_blank');
+    }
+
+    function redirectToMonthly() {
+      window.open('https://www.roblox.com/game-pass/1669157989/Monthly-Key', '_blank');
+    }
+
+    function redirectToDonation() {
+      window.open('https://www.roblox.com/games/15835021574/Party', '_blank');
+    }
+
+    function getSeasonalTheme() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+
+      if (month === 12 && day <= 25) return 'christmas';
+      if (month === 12 && day >= 26) return 'winter';
+      if (month === 1 || month === 2) return 'winter';
+
+      return 'original';
+    }
+
+    function adjustSnowfall(percentage) {
+      const container = document.querySelector('.snow-container');
+      if (!container) return;
+      
+      const allSnowflakes = container.querySelectorAll('.snowflake');
+      const targetCount = Math.floor(allSnowflakes.length * percentage);
+      
+      allSnowflakes.forEach((flake, index) => {
+        if (index < targetCount) {
+          flake.style.display = 'block';
+        } else {
+          flake.style.display = 'none';
+        }
+      });
+    }
+
+    function observeModals() {
+      const modals = document.querySelectorAll('.modal');
+      
+      modals.forEach(modal => {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+              const isActive = modal.classList.contains('active');
+              adjustSnowfall(isActive ? 0.05 : 1);
+            }
+          });
+        });
+        
+        observer.observe(modal, { attributes: true });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const theme = getSeasonalTheme();
+
+      if (theme === 'christmas') {
+        document.body.classList.add('christmas-theme');
+        createSnowfall(150); 
+      } else if (theme === 'winter') {
+        document.body.classList.add('winter-theme');
+        createSnowfall(100); 
+      }
+
+      if (GLOBAL_WARNING_MESSAGE.trim() !== "") {
+        const warningBanner = document.getElementById('globalWarning');
+        const warningText = document.getElementById('warningText');
+        warningText.textContent = GLOBAL_WARNING_MESSAGE;
+        warningBanner.style.display = 'block';
+        document.body.classList.add('warning-active');
+      }
+
+      const starsContainer = document.querySelector('.stars-container');
+      for (let i = 0; i < 200; i++) {
+        let star = document.createElement('div');
+        star.classList.add('star');
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 3 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 2 + 's';
+        star.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+        starsContainer.appendChild(star);
+      }
+
+      const numOrbs = 5;
+      for (let i = 0; i < numOrbs; i++) {
+        let orb = document.createElement('div');
+        orb.classList.add('orb');
+        orb.style.width = (Math.random() * 300 + 200) + 'px';
+        orb.style.height = orb.style.width;
+        orb.style.left = Math.random() * 100 + '%';
+        orb.style.top = Math.random() * 100 + '%';
+        orb.style.animationDelay = Math.random() * 5 + 's';
+        orb.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        const colors = [
+          'rgba(166, 76, 255, 0.15)',
+          'rgba(60, 188, 255, 0.15)',
+          'rgba(76, 103, 255, 0.15)',
+          'rgba(255, 76, 138, 0.1)'
+        ];
+        orb.style.background = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(orb);
+      }
+
+      function createShootingStar() {
+        let shootingStar = document.createElement('div');
+        shootingStar.classList.add('shooting-star');
+        let startX = Math.random() > 0.5 ? '-100px' : (window.innerWidth + 100) + 'px';
+        let startY = Math.random() * 50 + '%';
+        let endX = Math.random() > 0.5 ? (window.innerWidth + 100) + 'px' : '-100px';
+        let endY = (Math.random() * 50 + 50) + '%';
+        shootingStar.style.setProperty('--start-x', startX);
+        shootingStar.style.setProperty('--start-y', startY);
+        shootingStar.style.setProperty('--end-x', endX);
+        shootingStar.style.setProperty('--end-y', endY);
+        starsContainer.appendChild(shootingStar);
+        setTimeout(() => shootingStar.remove(), 2000);
+      }
+      setInterval(createShootingStar, 3000);
+
+      const scrollArrow = document.getElementById('scrollArrow');
+      const featuresSection = document.getElementById('features');
+      scrollArrow.addEventListener('click', function() {
+        featuresSection.scrollIntoView({ behavior: 'smooth' });
+      });
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          scrollArrow.classList.add('hidden');
+        } else {
+          scrollArrow.classList.remove('hidden');
+        }
+      });
+
+      const featureCards = document.querySelectorAll('.feature-card');
+      const revealElements = document.querySelectorAll('.reveal');
+      function checkScroll() {
+        featureCards.forEach((card, index) => {
+          const cardTop = card.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (cardTop < windowHeight - 100) {
+            setTimeout(() => {
+              card.classList.add('visible');
+            }, index * 100);
+          }
+        });
+        revealElements.forEach(el => {
+          const elTop = el.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (elTop < windowHeight - 100) {
+            el.classList.add('visible');
+          }
+        });
+      }
+      checkScroll();
+      window.addEventListener('scroll', checkScroll);
+
+      const cursor = document.querySelector('.cursor');
+      let mouseX = 0, mouseY = 0;
+      let posX = 0, posY = 0;
+      document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      function animate() {
+        posX += (mouseX - posX) * 0.2;
+        posY += (mouseY - posY) * 0.2;
+        cursor.style.left = posX + 'px';
+        cursor.style.top = posY + 'px';
+        requestAnimationFrame(animate);
+      }
+      animate();
+      document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+      });
+      document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+      });
+
+      function createSnowfall(count) {
+        const snowContainer = document.createElement('div');
+        snowContainer.className = 'snow-container';
+        snowContainer.style.position = 'fixed';
+        snowContainer.style.top = '0';
+        snowContainer.style.left = '0';
+        snowContainer.style.width = '100%';
+        snowContainer.style.height = '100%';
+        snowContainer.style.pointerEvents = 'none';
+        snowContainer.style.zIndex = '9998';
+        document.body.appendChild(snowContainer);
+        for (let i = 0; i < count; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          const sizes = ['small', 'medium', 'large'];
+          const size = sizes[Math.floor(Math.random() * sizes.length)];
+          snowflake.classList.add(size);
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDelay = (Math.random() * -20) + 's';
+          snowContainer.appendChild(snowflake);
+        }
+      }
+      
+      observeModals();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
